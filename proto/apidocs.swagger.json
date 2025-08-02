@@ -3306,6 +3306,10 @@
         "schema": {
           "type": "string",
           "description": "The Schema containing one or more Object Definitions that will be written\nto the Permissions System.\n\n4MiB"
+        },
+        "dryRun": {
+          "type": "boolean",
+          "description": "dry_run enables dry-run mode for schema validation without actually writing\nthe schema to the system. When true, the schema will be validated but not\npersisted."
         }
       },
       "description": "WriteSchemaRequest is the required data used to \"upsert\" the Schema of a\nPermissions System."

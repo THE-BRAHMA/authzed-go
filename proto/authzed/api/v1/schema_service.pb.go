@@ -124,7 +124,11 @@ type WriteSchemaRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// The Schema containing one or more Object Definitions that will be written
 	// to the Permissions System.
-	Schema        string `protobuf:"bytes,1,opt,name=schema,proto3" json:"schema,omitempty"` // 4MiB
+	Schema string `protobuf:"bytes,1,opt,name=schema,proto3" json:"schema,omitempty"` // 4MiB
+	// dry_run enables dry-run mode for schema validation without actually writing
+	// the schema to the system. When true, the schema will be validated but not
+	// persisted.
+	DryRun        bool `protobuf:"varint,2,opt,name=dry_run,json=dryRun,proto3" json:"dry_run,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -164,6 +168,13 @@ func (x *WriteSchemaRequest) GetSchema() string {
 		return x.Schema
 	}
 	return ""
+}
+
+func (x *WriteSchemaRequest) GetDryRun() bool {
+	if x != nil {
+		return x.DryRun
+	}
+	return false
 }
 
 // WriteSchemaResponse is the resulting data after having written a Schema to
@@ -1731,9 +1742,11 @@ const file_authzed_api_v1_schema_service_proto_rawDesc = "" +
 	"\x12ReadSchemaResponse\x12\x1f\n" +
 	"\vschema_text\x18\x01 \x01(\tR\n" +
 	"schemaText\x12A\n" +
-	"\aread_at\x18\x02 \x01(\v2\x18.authzed.api.v1.ZedTokenB\x0e\xfaB\x05\x8a\x01\x02\x10\x01\xbaH\x03\xc8\x01\x01R\x06readAt\"B\n" +
+	"\aread_at\x18\x02 \x01(\v2\x18.authzed.api.v1.ZedTokenB\x0e\xfaB\x05\x8a\x01\x02\x10\x01\xbaH\x03\xc8\x01\x01R\x06readAt\"g\n" +
 	"\x12WriteSchemaRequest\x12,\n" +
-	"\x06schema\x18\x01 \x01(\tB\x14\xfaB\ar\x05(\x80\x80\x80\x02\xbaH\ar\x05(\x80\x80\x80\x02R\x06schema\"^\n" +
+	"\x06schema\x18\x01 \x01(\tB\x14\xfaB\ar\x05(\x80\x80\x80\x02\xbaH\ar\x05(\x80\x80\x80\x02R\x06schema\x12#\n" +
+	"\adry_run\x18\x02 \x01(\bB\n" +
+	"\xfaB\x02j\x00\xbaH\x02j\x00R\x06dryRun\"^\n" +
 	"\x13WriteSchemaResponse\x12G\n" +
 	"\n" +
 	"written_at\x18\x01 \x01(\v2\x18.authzed.api.v1.ZedTokenB\x0e\xfaB\x05\x8a\x01\x02\x10\x01\xbaH\x03\xc8\x01\x01R\twrittenAt\"\xa8\x01\n" +
