@@ -1,6 +1,6 @@
 package v1
 
 const (
-	BufRepository = "buf.build/authzed/api"
-	BufTag        = "1f7cceb174b24790b7243f5b49aa836a"
+	BufRepository = "buf.build/thebrahma/spicedb"
+	BufTag        = "1c66fc0a30d94923afc993a783e71307"
 )
